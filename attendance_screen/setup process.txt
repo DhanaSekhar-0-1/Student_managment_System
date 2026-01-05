@@ -1,0 +1,42 @@
+STEP 3: VERIFY BRIDGE ALIVE (CRITICAL)
+
+Open browser:
+
+http://localhost:3001/api/serial/ports
+
+
+If this does NOT respond → bridge is dead → stop here.
+
+🔧 STEP 4: CONNECT SERIAL (SAFE WAY)
+
+Run:
+
+curl -X POST http://localhost:3001/api/serial/connect ^
+  -H "Content-Type: application/json" ^
+  -d "{\"port\":\"COM4\",\"baudRate\":9600}"
+
+EXPECTED OUTPUT IN BRIDGE CONSOLE
+Connection request received
+Connected to COM4 at 9600 baud
+
+
+❌ If bridge crashes here → ESP32 / baud / serial issue
+
+🔧 STEP 5: START FLUTTER WEB (LAST)
+flutter run -d chrome
+
+
+Open ONE tab only.
+
+You MUST see:
+
+Bridge connected! Socket ID: xxxx
+
+C:\Windows\system32>curl http://localhost:3001/api/serial/ports
+{"success":true,"ports":[{"path":"COM4","manufacturer":"Silicon Labs","serialNumber":"0001","pnpId":"USB\\VID_10C4&PID_EA60\\0001","locationId":"Port_#0004.Hub_#0003","vendorId":"10C4","productId":"EA60"},{"path":"COM1","manufacturer":"(Standard port types)","pnpId":"ACPI\\PNP0501\\1"}]}
+C:\Windows\system32>curl -X POST http://localhost:3001/api/serial/connect ^
+More?   -H "Content-Type: application/json" ^
+More?   -d "{\"port\":\"COM4\",\"baudRate\":9600}"
+{"success":true,"message":"Connected to COM4"}
+C:\Windows\system32>
+

@@ -122,7 +122,7 @@ function processBuffer() {
     clearTimer = setTimeout(() => {
       clearNfcId();
     }, CLEAR_DELAY);
-    console.log('⏱️ Clear timer started (1 seconds)');
+    console.log('⏱️ Clear timer started (5 seconds)');
   } else {
     if (isDuplicate) {
       console.log('⏭️ SKIPPED - Duplicate');

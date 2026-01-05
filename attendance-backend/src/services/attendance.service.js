@@ -32,9 +32,14 @@ exports.markAttendance = async (nfcId, deviceId = null) => {
     [student.ID_No, date]
   );
 
-  if (existingAttendance.length > 0) {
-    throw new Error("Attendance already marked for today");
-  }
+
+	if (existingAttendance.length > 0) {
+	  return {
+		status: "already_marked",
+		message: "Attendance already marked for today"
+	  };
+	}
+
 
   // 3. Check if it's Sunday
   const dayOfWeek = now.getDay();
