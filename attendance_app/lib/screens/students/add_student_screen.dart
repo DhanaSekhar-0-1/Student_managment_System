@@ -440,7 +440,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                 NfcReaderWidget(
                   key: _nfcReaderKey,
                   onNfcReceived: _handleNfcReceived,
-                  initialPort: 'COM4',
                 ),
                 const SizedBox(height: 16),
               ],
